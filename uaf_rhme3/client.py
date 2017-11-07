@@ -5,75 +5,70 @@ from pwn import log, remote
 
 class TeamManagerClient(object):
     def __init__(self, host, port):
-        self.host = host
-        self.port = port
-        self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.r = None
+        self.__host = host
+        self.__port = port
+        self.__sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.__r = None
 
     def connect(self):
         while True:
             try:
-                self._sock.settimeout(0.5)
-                self._sock.connect((self.host, self.port))
+                self.__sock.settimeout(0.5)
+                self.__sock.connect((self.__host, self.__port))
                 log.info('connected!')
                 break
             except:
                 # log.info('.')
                 continue
 
-        self.r = remote.fromsocket(self._sock)
+        self.__r = remote.fromsocket(self.__sock)
         self._wait_menu()
 
+    def __getattr__(self, name):
+        return getattr(self.__r, name)
 
     def _wait_menu(self):
-        output = self.r.recvuntil('Your choice:', timeout=2)
+        output = self.recvuntil('Your choice:', timeout=2)
         log.info(output)
         return output
 
     def add_player(self, name):
-        self.r.sendline('1')
-        self.r.recvuntil('Enter player name:')
-        self.r.sendline(name)
-        self.r.sendline('1')
-        self.r.sendline('2')
-        self.r.sendline('3')
-        self.r.sendline('4')
+        self.sendline('1')
+        self.recvuntil('Enter player name:')
+        self.sendline(name)
+        self.sendline('1')
+        self.sendline('2')
+        self.sendline('3')
+        self.sendline('4')
         self._wait_menu()
 
     def edit_player(self, name):
         # self.select_player(player_id)
-        self.r.sendline('4')
+        self.sendline('4')
         self._wait_menu()
-        self.r.sendline('1')
-        self.r.sendline(name)
+        self.sendline('1')
+        self.sendline(name)
         self._wait_menu()
-        self.r.sendline('0')
+        self.sendline('0')
         self._wait_menu()
 
     def select_player(self, player_id):
-        self.r.sendline('3')
+        self.sendline('3')
         self._wait_menu()
-        self.r.sendline(str(player_id))
-        log.info(self.r.recvrepeat(0.2))
+        self.sendline(str(player_id))
+        log.info(self.recvrepeat(0.2))
 
     def show_player(self):
-        self.r.sendline('5')
+        self.sendline('5')
         output = self._wait_menu()
         return output
 
     def remove_player(self, player_id):
-        self.r.sendline('2')
-        self.r.sendline(str(player_id))
+        self.sendline('2')
+        self.sendline(str(player_id))
         self._wait_menu()
 
     def print_team(self):
-        self.r.sendline('6')
-        log.info(self.r.recvrepeat(0.2))
+        self.sendline('6')
+        log.info(self.recvrepeat(0.2))
         self._wait_menu()
-
-    def close(self):
-        self._sock.close()
-
-
-    def interactive(self):
-        self.r.interactive()
