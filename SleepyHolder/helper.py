@@ -150,6 +150,7 @@ def print_heap(header=None):
     first_chunk_size = 0
     if heap_start_addr:
         first_chunk_size = read_int_from_memory(heap_start_addr + 0x8)
+        first_chunk_size &= ~0xf
 
     # heap_start = heap_section.page_start
 
