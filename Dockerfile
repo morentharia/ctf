@@ -17,3 +17,9 @@ cd .. && git clone https://github.com/pwndbg/pwndbg && cd pwndbg && git checkout
 # && \
 # cd .. && git clone https://github.com/niklasb/libc-database && cd libc-database && ./get && \
 gem install one_gadget
+
+RUN git clone https://github.com/longld/peda.git /tools/peda
+RUN echo "source /tools/peda/peda.py" > ~/.gdbinit
+
+# disable ASLR
+RUN sysctl kernel.randomize_va_space=0
