@@ -1,6 +1,7 @@
 # docker build -t ctf:ubuntu19.10 .
 # docker run --rm -v $PWD:/pwd --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -d --name ctf -i ctf:ubuntu19.10
 # docker exec -it ctf /bin/bash
+# --privileged
 
 FROM ubuntu:19.10
 ENV LC_CTYPE C.UTF-8
@@ -22,4 +23,6 @@ RUN git clone https://github.com/longld/peda.git /tools/peda
 RUN echo "source /tools/peda/peda.py" > ~/.gdbinit
 
 # disable ASLR
-RUN sysctl kernel.randomize_va_space=0
+# RUN sysctl kernel.randomize_va_space=0
+# не пашет для  докера юзай это
+# setarch --addr-no-randomize mytestprog
