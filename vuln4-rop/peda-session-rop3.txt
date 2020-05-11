@@ -1,13 +1,2 @@
-break *vulnerable_function+34
-
-
-
-
-
-
-
-
-
-
-
+break *0x0804849c
 

