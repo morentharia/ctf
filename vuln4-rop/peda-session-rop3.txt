@@ -1,2 +1,13 @@
 break *vulnerable_function+34
 
+
+
+
+
+
+
+
+
+
+
+

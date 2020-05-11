@@ -1,0 +1,9 @@
+==tips==
+
+* gdb: In order to switch interactively between emacs and vi editing modes, use the command M-C-j (toggle-editing-mode).
+The Readline default is emacs mode.
+
+* disable aslr in docker
+  {{{sh
+      setarch --addr-no-randomize mytestprog
+  }}}
