@@ -2,9 +2,11 @@
 
 * gdb: In order to switch interactively between emacs and vi editing modes, use the command M-C-j (toggle-editing-mode).
     The Readline default is emacs mode.
+* M-J 
 * disable aslr in docker
   {{{sh
       setarch --addr-no-randomize mytestprog
   }}}
 * pwn debug logs => context(arch="i686", os="linux", log_level=logging.DEBUG)
 * hexdump == xxd -g 1
+* https://github.com/Gallopsled/pwntools-tutorial/blob/master/bytes.md

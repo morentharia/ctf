@@ -1,2 +1,2 @@
-break *0x0804849c
+break vulnerable_function
 
