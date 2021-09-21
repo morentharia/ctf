@@ -1,0 +1,87 @@
+     1                                  ; function5.asm
+     2                                  extern printf
+     3                                  section .data				
+     4 00000000 41                      	first	db	"A"					
+     5 00000001 42                      	second	db	"B"
+     6 00000002 43                      	third	db	"C"
+     7 00000003 44                      	fourth	db	"D"			
+     8 00000004 45                      	fifth	db	"E"
+     9 00000005 46                              sixth	db	"F"
+    10 00000006 47                              seventh	db	"G"
+    11 00000007 48                              eighth  db      "H"
+    12 00000008 49                              ninth   db      "I"
+    13 00000009 4A                              tenth   db      "J"
+    14 0000000A 54686520737472696E-      	fmt	db	"The string is: %s",10,0 
+    14 00000013 672069733A2025730A-
+    14 0000001C 00                 
+    15                                  section .bss
+    16 00000000 <res 0000000B>          	flist resb	11          ;length of string plus end 0
+    17                                  section .text									
+    18                                  	global main						
+    19                                  main:
+    20 00000000 55                      	push rbp
+    21 00000001 4889E5                      mov rbp, rsp
+    22 00000004 48BF-                   	mov rdi, flist		; length			
+    22 00000006 [0000000000000000] 
+    23 0000000E 48BE-                   	mov rsi, first		; the correct registers
+    23 00000010 [0000000000000000] 
+    24 00000018 48BA-                   	mov rdx, second
+    24 0000001A [0100000000000000] 
+    25 00000022 48B9-                   	mov rcx, third			
+    25 00000024 [0200000000000000] 
+    26 0000002C 49B8-                   	mov r8, fourth
+    26 0000002E [0300000000000000] 
+    27 00000036 49B9-                           mov r9, fifth
+    27 00000038 [0400000000000000] 
+    28 00000040 68[09000000]                    push tenth		; now start pushing in
+    29 00000045 68[08000000]                    push ninth		; reverse order
+    30 0000004A 68[07000000]                    push eighth
+    31 0000004F 68[06000000]                    push seventh
+    32 00000054 68[05000000]            	push sixth
+    33 00000059 E820000000              	call lfunc		;call the function
+    34                                  		; print the result
+    35 0000005E 48BF-                   		mov rdi, fmt
+    35 00000060 [0A00000000000000] 
+    36 00000068 48BE-                                   mov rsi, flist
+    36 0000006A [0000000000000000] 
+    37 00000072 B800000000              		mov rax, 0
+    38 00000077 E8(00000000)            		call printf
+    39 0000007C C9                      leave
+    40 0000007D C3                      ret	
+    41                                  ;---------------------------------------------------------------------------											
+    42                                  lfunc:	
+    43 0000007E 55                      	push rbp
+    44 0000007F 4889E5                    	mov rbp,rsp
+    45 00000082 4831C0                          xor rax,rax             ;clear rax (especially higher bits)
+    46 00000085 8A06                            mov al,byte[rsi]               ; move content argument to al
+    47 00000087 8807                    	mov [rdi], al             ; store al to memory 
+    48 00000089 8A02                            mov al, byte[rdx]          
+    49 0000008B 884701                  	mov [rdi+1], al           
+    50 0000008E 8A01                            mov al, byte[rcx]
+    51 00000090 884702                  	mov [rdi+2], al
+    52 00000093 418A00                          mov al, byte[r8]
+    53 00000096 884703                  	mov [rdi+3], al
+    54 00000099 418A01                          mov al, byte[r9]
+    55 0000009C 884704                  	mov [rdi+4], al
+    56 0000009F 4831DB                          xor rbx,rbx
+    57 000000A2 488B4510                        mov rax, qword [rbp+16] ;initial stack + rip + rbp
+    58 000000A6 8A18                            mov bl,[rax]
+    59 000000A8 885F05                  	mov [rdi+5], bl
+    60 000000AB 488B4518                        mov rax, qword [rbp+24]
+    61 000000AF 8A18                            mov bl,[rax]
+    62 000000B1 885F06                  	mov [rdi+6], bl
+    63 000000B4 488B4520                        mov rax, qword [rbp+32]
+    64 000000B8 8A18                            mov bl,[rax]
+    65 000000BA 885F07                  	mov [rdi+7], bl
+    66 000000BD 488B4528                        mov rax, qword [rbp+40]
+    67 000000C1 8A18                            mov bl,[rax]
+    68 000000C3 885F08                  	mov [rdi+8], bl
+    69 000000C6 488B4530                        mov rax, qword [rbp+48]
+    70 000000CA 8A18                            mov bl,[rax]
+    71 000000CC 885F09                  	mov [rdi+9], bl
+    72 000000CF B300                            mov bl,0
+    73 000000D1 885F0A                  	mov [rdi+10], bl
+    74                                  
+    75 000000D4 4889EC                  mov rsp,rbp
+    76 000000D7 5D                      pop rbp
+    77 000000D8 C3                      ret									

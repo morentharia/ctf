@@ -1,8 +1,11 @@
 ==tips==
-
+* echo 0 > /proc/sys/kernel/randomize_va_space
+* что бы можно было аттачится к любому процессу ну будучи рутом например к socat
+    sudo sysctl -w kernel.yama.ptrace_scope=0
+* ~/.gdbinit  - конфиг gdb
 * gdb: In order to switch interactively between emacs and vi editing modes, use the command M-C-j (toggle-editing-mode).
     The Readline default is emacs mode.
-* M-J 
+* M-[ вим режим в gdb как везде теперь почему то в gef
 * disable aslr in docker
   {{{sh
       setarch --addr-no-randomize mytestprog
@@ -10,3 +13,23 @@
 * pwn debug logs => context(arch="i686", os="linux", log_level=logging.DEBUG)
 * hexdump == xxd -g 1
 * https://github.com/Gallopsled/pwntools-tutorial/blob/master/bytes.md
+* Начиная с релиза 16.04 в Ubuntu по умолчанию используется кошмарный сервис Apport для управления созданием отчетов о падении программ, включая дампы ядра. Кошмарный, потому что он не дает управлять конфигурацией дампов привычными способами, поэтому для начала избавимся от него. 
+    $ sudo vi /etc/default/apport  # установить значение "enabled" в "0"
+    $ sudo systemctl stop apport
+
+
+* об input https://reverseengineering.stackexchange.com/questions/13928/managing-inputs-for-payload-injection
+
+* CVE-2017-5123 https://github.com/c3r34lk1ll3r/CVE-2017-5123/tree/4f817379d6797ed1de681a905e6d2d96615d4c3f
+* CVE-2021-3156 https://github.com/lmol/CVE-2021-3156/tree/34b38d614f687148e456a55a8a43e8691d1bdca3
+
+* SOCAT !!!! https://gef.readthedocs.io/en/master/commands/process-search/
+*  и еще вот это https://github.com/Gallopsled/pwntools/issues/1589
+*  https://github.com/Gallopsled/pwntools-tutorial/blob/master/debugging.md
+
+* autoquit.py  https://awesomeopensource.com/project/bet4it/build-an-efficient-pwn-environment
+
+* eval and parse  https://github.com/chrisc11/debug-tips/blob/master/gdb/python-linked-list.md
+
+urls:
+- https://xakep.ru/2019/09/20/stack-overflow/
