@@ -53,7 +53,7 @@ s(
     b"target exec " + TARGET.encode()
     + b"""
     # set follow-fork-mode child
-    b *0x080484ca
+    # b *0x080484ca
     """
     + b'run $(echo "' + payload + b'")'
     + b"""
@@ -61,5 +61,8 @@ s(
     telescope $esp-136
     """
 )
-io.interactive()
+# io.interactive()
+
+
+
 # it.recv()
