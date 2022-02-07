@@ -33,3 +33,8 @@
 
 urls:
 - https://xakep.ru/2019/09/20/stack-overflow/
+
+прост:
+print(bytes.fromhex('00112233445566778899AABBCCDDEEFF'))
+
+* LiveOverflow poc.py https://github.com/LiveOverflow/pwnedit/blob/main/episode13/poc.py
