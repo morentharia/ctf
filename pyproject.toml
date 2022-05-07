@@ -10,6 +10,10 @@ pwnlib = "^1.2.1"
 pexpect = "^4.8.0"
 pynvim = "^0.4.3"
 isort = "^5.10.1"
+pwntools = "^4.8.0"
+black = "^22.3.0"
+ropper = "^1.13.6"
+pwn = "^1.0"
 
 [tool.poetry.dev-dependencies]
 
