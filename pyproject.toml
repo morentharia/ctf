@@ -16,6 +16,8 @@ ropper = "^1.13.6"
 pwn = "^1.0"
 pylint = "^2.13.9"
 jedi = "^0.18.1"
+rich = "^12.4.4"
+libtmux = "^0.21.0"
 
 [tool.poetry.dev-dependencies]
 
