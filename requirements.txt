@@ -7,7 +7,7 @@ cffi==1.14.5
 chardet==4.0.0
 click==8.0.1
 colored-traceback==0.3.0
-cryptography==3.4.7
+cryptography==39.0.1
 greenlet==1.1.0
 idna==2.10
 intervaltree==3.1.0
