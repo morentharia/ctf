@@ -1,2 +1,4 @@
-ROPGadget==6.5
-pwntools==4.5.1
+pwn
+ropper
+pwntools
+ROPGadget
