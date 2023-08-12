@@ -1,0 +1,4 @@
+disass main
+b *0x4006a8
+telescope $rbp-0x1c
+
