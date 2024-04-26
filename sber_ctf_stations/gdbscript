@@ -1,0 +1,123 @@
+define hook-quit
+    set confirm off
+end
+
+set follow-fork-mode parent
+set follow-fork-mode child
+starti
+# catch syscall
+# catch syscall munmap
+# catch syscall readlink
+# catch syscall write
+# b main
+# catch syscall read
+# catch syscall mprotect
+# catch syscall getrandom
+
+# b *0x415084
+# b *(main+ceh)
+
+
+pie b 0x0000222e
+pie run < input.txt
+# c
+# c
+# c
+# # b *0x415c18
+# source ~/.gef-a85368fc771dcbb4db2b41818781e182845015b9.py
+# ctx
+# continue 35
+
+# info proc mappings
+#
+# dump binary memory dump1  0x400000 0x401000
+# dump binary memory dump2  0x401000 0x498000
+# dump binary memory dump3  0x498000 0x4c1000
+# dump binary memory dump4  0x4c1000 0x4cd000
+#
+# dump binary memory fuck 0x400000 0x4ef000
+
+
+# dump binary memory dump4 0x7ffffffdc000     0x7ffffffff000
+
+
+
+# dump binary memory dump4  0x7ffff7fa9000     0x7ffff7ff8000
+# dump binary memory dump4  0x7ffffffdc000     0x7ffffffff000
+
+# dump binary memory dump4 0x4c1000           0x4cd000
+# dump binary memory dump4 0x7ffff7fa8000     0x7ffff7fa9000
+# dump binary memory dump4 0x7ffff7fa9000     0x7ffff7ff8000
+# dump binary memory dump4 0x7ffff7ff8000     0x7ffff7ff9000
+# dump binary memory dump4 0x7ffff7ff9000     0x7ffff7ffd000
+# dump binary memory dump4 0x7ffff7ffd000     0x7ffff7fff000
+# dump binary memory dump4 0xffffffffff600000 0xffffffffff601000
+
+
+# b *0x44f5e6
+# b *0x44f3f4
+# b *0x44f430
+# b *0x44f432
+# b *0x44f69e
+
+# b *0x44f3dd
+# x/10i  $rdi
+# x/10b  $rdi
+# x/10s  $rdi
+# x/10s  $rdx
+# hexdump $rdi
+# ctx
+# b *0x44f5e0
+#
+# b *0x44f5e6
+# b *0x44f639
+# b *0x44f654
+# b *0x44f699
+# b *0x44f698
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# c
+# b  *0x44f3c7
+
+# b  *0x44f3dd
+# b  *0x44f7ae
+#
+# disassemble main
+# disassemble vuln
+# ctx
+# x/10i  0x7bdb30d1
+# vmmap
+# x 0x0804c000
+# p printf
+# telescope  0x0804c000
+#
